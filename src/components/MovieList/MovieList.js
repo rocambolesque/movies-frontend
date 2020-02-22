@@ -10,6 +10,10 @@ const movieList = [
 	{
 		"title": "Drive",
 		"rating": "5/5",
+	},
+	{
+		"title": "Interstellar",
+		"rating": "5/5",
 	}
 ]
 
@@ -19,7 +23,7 @@ class MovieList extends Component {
 			<div>
 				{ movieList.map((movie, i) => {
 					return (
-						<Movie title={movie.title} rating={movie.rating} />
+						<Movie key={movie.title} title={movie.title} rating={movie.rating} />
 					)
 				})}
 			</div>

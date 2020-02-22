@@ -22,13 +22,13 @@ class Movie extends Component {
   render() {
 		return (
 			<div>
-          <div class="Movie-title">
+          <div className="Movie-title">
             {this.state.movie.Title}
           </div>
           <div>
             { this.state.movie.Ratings.map((rating, i) => {
               return (
-                <div class="Movie-ratings">
+                <div key={rating.Source} className="Movie-ratings">
                   {rating.Source}: {rating.Value}
                 </div>
               )
