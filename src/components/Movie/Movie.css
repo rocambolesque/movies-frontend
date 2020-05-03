@@ -1,3 +1,9 @@
-.Movie-title {
+.movieTitle {
   font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .moviePoster {
+    width: 80%;
+  }
 }

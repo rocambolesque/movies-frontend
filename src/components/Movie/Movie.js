@@ -46,14 +46,14 @@ class Movie extends Component {
 				{({ isSubmitting }) => (
 					<Form>
 						<Field name="id" type="hidden" />
-            <div className="Movie-title">
+            <div className="movieTitle">
               {this.state.movie.Title}
             </div>
-            <img src={this.state.movie.Poster} alt="movie poster"/>
+            <img src={this.state.movie.Poster} alt="poster" className="moviePoster" />
             <div>
               { this.state.movie.Ratings.map((rating, i) => {
                 return (
-                  <div key={rating.Source} className="Movie-ratings">
+                  <div key={rating.Source}>
                     {rating.Source}: {rating.Value}
                   </div>
                 )
