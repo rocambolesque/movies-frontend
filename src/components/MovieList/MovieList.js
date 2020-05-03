@@ -1,34 +1,32 @@
 import React, { Component } from 'react';
 import './MovieList.css';
 import Movie from '../Movie/Movie';
-
-const movieList = [
-	{
-		"title": "Whiplash",
-		"rating": "5/5",
-	},
-	{
-		"title": "Drive",
-		"rating": "5/5",
-	},
-	{
-		"title": "Interstellar",
-		"rating": "5/5",
-	}
-]
+import MovieService from '../../services/MovieService';
 
 class MovieList extends Component {
-  render() {
-		return (
-			<div>
-				{ movieList.map((movie, i) => {
-					return (
-						<Movie key={movie.title} title={movie.title} rating={movie.rating} />
-					)
-				})}
-			</div>
-		);
-  }
+    state = {
+        movieList: []
+    }
+
+    componentDidMount() {
+        const movieService = new MovieService();
+        movieService.getMovies()
+            .then(res => {
+                this.setState({movieList: res.data.movie})
+            })
+    }
+
+    render() {
+        return (
+            <div>
+                { this.state.movieList.map((movie, i) => {
+                    return (
+                        <Movie key={movie.id} id={movie.id} title={movie.title} rating={movie.rating} />
+                   )
+                })}
+            </div>
+       );
+    }
 }
 
 export default MovieList; // Don’t forget to use export default!
