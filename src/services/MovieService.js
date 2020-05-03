@@ -31,18 +31,39 @@ class MovieService {
     return this.getClient()
       .mutate({
         mutation: gql`
-		  mutation update_movie($id:Int!, $rating:Int!) {
-			update_movie(where: {id: {_eq: $id}}, _set: {rating: $rating}) {
-			  returning {
-				id
-				title
-				rating
-			  }
-			}
-		  }
+          mutation update_movie($id:Int!, $rating:Int!) {
+            update_movie(where: {id: {_eq: $id}}, _set: {rating: $rating}) {
+              returning {
+                id
+                title
+                rating
+              }
+            }
+          }
         `,
         variables: {
             id: id,
+            rating: rating
+        }
+      })
+    }
+
+  async addMovie(title, rating) {
+    return this.getClient()
+      .mutate({
+        mutation: gql`
+          mutation insert_movie($title:String!, $rating:Int!) {
+            insert_movie(objects: {rating: $rating, title: $title}) {
+              returning {
+                id
+                title
+                rating
+              }
+            }
+          }
+        `,
+        variables: {
+            title: title,
             rating: rating
         }
       })
